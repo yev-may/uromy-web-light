@@ -4,6 +4,10 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 
 export default createVuetify({
+  defaults: {
+    VBtn: { variant: 'outlined' },
+    VTextField: { variant: 'outlined' }
+  },
   theme: {
     themes: {
       light: {
