@@ -14,10 +14,14 @@ const routes = [
     name: 'new-card',
     path: '/new-card',
     component: () => import('@/views/NewCardView.vue')
-  } , {
+  }, {
     name: 'study-card',
     path: '/study-card',
     component: () => import('@/views/StudyCardView.vue')
+  }, {
+    name: 'storage',
+    path: '/storage',
+    component: () => import('@/views/StorageView.vue')
   }
 ]
 
