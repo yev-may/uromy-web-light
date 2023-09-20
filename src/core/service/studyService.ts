@@ -1,6 +1,6 @@
 import { getStudyCards, removeStudyCard, saveStudyCard } from "@/core/dao/studyDao";
 import { getCard } from "@/core/dao/cardDao";
-import StudyCard from "@/views/StudyCard.vue";
+import StudyCard from "@/views/StudyCardView.vue";
 import { getNextStudyDate, LEVEL_DELAY_MAP } from "@/core/service/studyTimeCalulationService";
 
 export const getNextCard = (): Card | null => {

@@ -1,5 +1,5 @@
 import storage from "@/core/dao/storage/storage";
-import StudyCard from "@/views/StudyCard.vue";
+import StudyCard from "@/views/StudyCardView.vue";
 
 const STUDY_CARDS_KEY: string = 'study-cards'
 
