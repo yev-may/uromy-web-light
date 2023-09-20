@@ -4,8 +4,7 @@ const addHours = (date: Date, hours: number): Date => {
 }
 
 export const LEVEL_DELAY_MAP: number[] = [
-  0,
-  10,
+  1,
   22,
   2 * 24 - 2,
   4 * 24 - 2,
