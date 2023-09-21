@@ -6,7 +6,8 @@ import { createVuetify } from 'vuetify'
 export default createVuetify({
   defaults: {
     VBtn: { variant: 'outlined' },
-    VTextField: { variant: 'outlined' }
+    VTextField: { variant: 'outlined' },
+    VTextarea: { variant: 'outlined' },
   },
   theme: {
     themes: {
