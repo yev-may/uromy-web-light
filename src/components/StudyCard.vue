@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { ref } from "vue"
 import { submitAnswer } from "@/core/service/studyService";
 
@@ -22,7 +23,10 @@ const answerShowed = ref(false)
     border
     rounded
   >
-    <p>{{ card.question }}</p>
+    <div
+      class="ql-editor"
+      v-html="card.question"
+    />
   </v-sheet>
   <v-sheet
     v-if="answerShowed"
@@ -31,7 +35,10 @@ const answerShowed = ref(false)
     border
     rounded
   >
-    <p>{{ card.answer }}</p>
+    <div
+      class="ql-editor"
+      v-html="card.answer"
+    />
   </v-sheet>
   <v-container class="pa-0 mt-3">
     <v-row v-if="!answerShowed">
