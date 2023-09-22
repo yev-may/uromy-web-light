@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import StorageStatus from "@/components/StorageStatus.vue";
+import CardPagePanel from "@/components/CardPagePanel.vue";
 import BackButton from "@/components/BackButton.vue";
 </script>
 
@@ -10,6 +11,11 @@ import BackButton from "@/components/BackButton.vue";
         <v-row class="justify-center">
           <v-col cols="12" sm="6" md="4">
             <StorageStatus />
+          </v-col>
+        </v-row>
+        <v-row class="justify-center">
+          <v-col cols="12" sm="6" md="4">
+            <CardPagePanel />
           </v-col>
         </v-row>
       </v-container>

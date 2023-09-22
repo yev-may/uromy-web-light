@@ -2,7 +2,6 @@
 import BackButton from "@/components/BackButton.vue"
 import CardForm from "@/components/CardForm.vue"
 import { reactive } from "vue"
-import { saveCard } from "@/core/dao/cardDao"
 import { createStudyCard } from "@/core/service/studyService";
 
 const cardForm = reactive<Card>({
@@ -18,8 +17,7 @@ const clearForm = (): void => {
 }
 
 const createCardToStudy = (card: Card) => {
-  const createdCard: Card = saveCard(card)
-  createStudyCard(createdCard)
+  createStudyCard(card)
   clearForm()
 }
 </script>

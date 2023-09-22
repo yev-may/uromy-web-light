@@ -1,5 +1,5 @@
 import { getStudyCards, removeStudyCard, saveStudyCard } from "@/core/dao/studyDao";
-import { getCard } from "@/core/dao/cardDao";
+import { getCard, saveCard } from "@/core/dao/cardDao";
 import StudyCard from "@/views/StudyCardView.vue";
 import { getNextStudyDate, LEVEL_DELAY_MAP } from "@/core/service/studyTimeCalulationService";
 
@@ -13,12 +13,12 @@ export const getNextCard = (): Card | null => {
 }
 
 export const createStudyCard = (card: Card): void => {
-  const studyCard: StudyCard = {
-    cardId: card.id || 'no-id-error-message',
+  const createdCard: Card = saveCard(card)
+  saveStudyCard({
+    cardId: createdCard.id || 'no-id-error-message',
     level: 0,
     nextStudyDate: new Date(),
-  }
-  saveStudyCard(studyCard);
+  });
 }
 
 export const submitAnswer = (card: Card, answerResult: boolean): void => {
