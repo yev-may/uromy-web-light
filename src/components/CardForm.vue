@@ -1,13 +1,16 @@
 <script setup lang="ts">
+import { reactive } from "vue"
 import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
-import '@vueup/vue-quill/dist/vue-quill.bubble.css';
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import '@vueup/vue-quill/dist/vue-quill.bubble.css'
 
-defineProps<{
-  cardForm: Card,
+const props = defineProps<{
+  cardFormTemplate: Card,
   submitFunction: Function,
   buttonText: string
 }>()
+
+const cardForm = reactive(props.cardFormTemplate)
 </script>
 
 <template>

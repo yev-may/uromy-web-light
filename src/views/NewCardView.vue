@@ -1,24 +1,22 @@
 <script setup lang="ts">
 import BackButton from "@/components/BackButton.vue"
 import CardForm from "@/components/CardForm.vue"
-import { reactive } from "vue"
-import { createStudyCard } from "@/core/service/studyService";
+import { ref } from "vue"
+import { createStudyCard } from "@/core/service/studyService"
 
-const cardForm = reactive<Card>({
-  id: null,
-  question: '',
-  answer: '',
-})
+const formRefreshKey = ref(true)
 
-const clearForm = (): void => {
-  cardForm.id = null
-  cardForm.question = ''
-  cardForm.answer = ''
+const createCardFormTemplate = (): Card => {
+  return {
+    id: null,
+    question: '',
+    answer: '',
+  }
 }
 
 const createCardToStudy = (card: Card) => {
   createStudyCard(card)
-  clearForm()
+  formRefreshKey.value = !formRefreshKey.value
 }
 </script>
 
@@ -29,7 +27,8 @@ const createCardToStudy = (card: Card) => {
         <v-row class="justify-center">
           <v-col cols="12" sm="6" md="4">
             <CardForm
-              :card-form="cardForm"
+              :key="formRefreshKey"
+              :card-form-template="createCardFormTemplate()"
               :submit-function="createCardToStudy"
               button-text="Add"
             />
