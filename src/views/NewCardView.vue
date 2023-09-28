@@ -5,6 +5,7 @@ import { ref } from "vue"
 import { createStudyCard } from "@/core/service/studyService"
 
 const formRefreshKey = ref(true)
+const overlay = ref(false)
 
 const createCardFormTemplate = (): Card => {
   return {
@@ -17,6 +18,7 @@ const createCardFormTemplate = (): Card => {
 const createCardToStudy = (card: Card) => {
   createStudyCard(card)
   formRefreshKey.value = !formRefreshKey.value
+  overlay.value = true
 }
 </script>
 
@@ -46,4 +48,21 @@ const createCardToStudy = (card: Card) => {
       </v-container>
     </div>
   </div>
+  <v-overlay
+    class="align-center justify-center"
+    v-model="overlay"
+  >
+    <v-card class="pa-2">
+      <v-card-text>
+        <p>Card created</p>
+      </v-card-text>
+      <v-card-actions class="justify-center">
+        <v-btn
+          text="Ok"
+          variant="outlined"
+          @click="overlay = false"
+        />
+      </v-card-actions>
+    </v-card>
+  </v-overlay>
 </template>
