@@ -1,27 +1,32 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from "@/views/HomeView.vue";
+import StudyView from "@/views/StudyView.vue";
+import NewCardView from "@/views/NewCardView.vue";
+import StudyCardView from "@/views/StudyCardView.vue";
+import StorageView from "@/views/StorageView.vue";
 
 const routes = [
   {
     name: 'home',
     path: '/',
-    component: () => import('@/views/HomeView.vue'),
+    component: HomeView
 
   }, {
     name: 'study',
     path: '/study',
-    component: () => import('@/views/StudyView.vue')
+    component: StudyView
   }, {
     name: 'new-card',
     path: '/new-card',
-    component: () => import('@/views/NewCardView.vue')
+    component: NewCardView
   }, {
     name: 'study-card',
     path: '/study-card',
-    component: () => import('@/views/StudyCardView.vue')
+    component: StudyCardView
   }, {
     name: 'storage',
     path: '/storage',
-    component: () => import('@/views/StorageView.vue')
+    component: StorageView
   }
 ]
 
