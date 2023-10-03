@@ -1,6 +1,6 @@
 
 const addHours = (date: Date, hours: number): Date => {
-  return new Date(date.getTime() + (hours * 60 * 60 * 1000));
+  return new Date(date.getTime() + (hours * 60 * 60 * 1000))
 }
 
 export const LEVEL_DELAY_MAP: number[] = [
@@ -14,7 +14,7 @@ export const LEVEL_DELAY_MAP: number[] = [
 ]
 
 export const getNextStudyDate = (level: number): Date => {
-  const now: Date = new Date();
+  const now: Date = new Date()
   return addHours(now, LEVEL_DELAY_MAP[level])
 }
 

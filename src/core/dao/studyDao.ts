@@ -1,7 +1,7 @@
-import storage from "@/core/dao/storage/storage";
-import StudyCard from "@/views/StudyCardView.vue";
+import storage from '@/core/dao/storage/storage'
+import StudyCard from '@/views/StudyCardView.vue'
 
-const STUDY_CARDS_KEY: string = 'study-cards'
+const STUDY_CARDS_KEY = 'study-cards'
 
 export const getStudyCards = (): Array<StudyCard> => {
   return storage.getArray<StudyCard>(STUDY_CARDS_KEY)
@@ -10,12 +10,12 @@ export const getStudyCards = (): Array<StudyCard> => {
 const getStudyCardsWithout = (studyCard: StudyCard): Array<StudyCard> => {
   return getStudyCards().filter(sc => sc.cardId !== studyCard.cardId)
 }
-  export const saveStudyCards = (studyCards: Array<StudyCard>): void => {
+export const saveStudyCards = (studyCards: Array<StudyCard>): void => {
   storage.saveArray<StudyCard>(STUDY_CARDS_KEY, studyCards)
 }
 
 export const saveStudyCard = (studyCard: StudyCard): void => {
-  const studyCards: Array<StudyCard> = getStudyCardsWithout(studyCard);
+  const studyCards: Array<StudyCard> = getStudyCardsWithout(studyCard)
   studyCards.push(studyCard)
   saveStudyCards(studyCards)
 }

@@ -1,4 +1,4 @@
-import storage from "@/core/dao/storage/storage"
+import storage from '@/core/dao/storage/storage'
 
 export const saveCard = (card: Card): Card => {
   const cardId: string = card.id || 'c-' + storage.getNextId('card_seq')
@@ -14,7 +14,7 @@ export const getCard = (cardId: string): Card => {
 
 export const removeCard = (cardId: string): void => {
   removeCardFromList(cardId)
-  localStorage.removeItem(cardId);
+  localStorage.removeItem(cardId)
 }
 
 const addCardIdToList = (cardId: string): void => {

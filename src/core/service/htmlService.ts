@@ -1,4 +1,4 @@
 
 export const clearHtmlTags = (originalString: string): string => {
-  return originalString.replace(/(<([^>]+)>)/gi, "")
+  return originalString.replace(/(<([^>]+)>)/gi, '')
 }

@@ -1,7 +1,7 @@
-import { getStudyCards, removeStudyCard, saveStudyCard } from "@/core/dao/studyDao";
-import { getCard, saveCard } from "@/core/dao/cardDao";
-import StudyCard from "@/views/StudyCardView.vue";
-import { getNextStudyDate, LEVEL_DELAY_MAP } from "@/core/service/studyTimeCalulationService";
+import { getStudyCards, removeStudyCard, saveStudyCard } from '@/core/dao/studyDao'
+import { getCard, saveCard } from '@/core/dao/cardDao'
+import StudyCard from '@/views/StudyCardView.vue'
+import { getNextStudyDate, LEVEL_DELAY_MAP } from '@/core/service/studyTimeCalulationService'
 
 export const getNextCard = (): Card | null => {
   const now: Date = JSON.parse(JSON.stringify(new Date()))
@@ -18,7 +18,7 @@ export const createStudyCard = (card: Card): void => {
     cardId: createdCard.id || 'no-id-error-message',
     level: 0,
     nextStudyDate: new Date(),
-  });
+  })
 }
 
 export const submitAnswer = (card: Card, answerResult: boolean): void => {
@@ -31,7 +31,7 @@ export const submitAnswer = (card: Card, answerResult: boolean): void => {
     return
   }
 
-  studyCard.level = newLevel;
+  studyCard.level = newLevel
   studyCard.nextStudyDate = getNextStudyDate(newLevel)
   saveStudyCard(studyCard)
 }
