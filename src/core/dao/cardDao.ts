@@ -34,7 +34,8 @@ export const getCardIdList = (): Array<string> => {
 }
 
 const saveCardIdList = (cardIdList: Array<string>): void => {
-  return storage.saveArray<string>('card-id-list', cardIdList)
+  const uniqueCardIds: Set<string> = new Set(cardIdList)
+  return storage.saveArray<string>('card-id-list', Array.from(uniqueCardIds))
 }
 
 export const getCardPageCount = (size: number): number => {

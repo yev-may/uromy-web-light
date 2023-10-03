@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { clearHtmlTags } from "@/core/service/htmlService"
+import router from "@/router"
 
 defineProps<{
   card: Card,
@@ -24,8 +25,9 @@ const formatPreview = (question: string):string => {
     <div class="d-flex align-center">
       {{ formatPreview(clearHtmlTags(card.question)) }}
     </div>
-    <v-btn
-      @click="deleteFunction"
-    >Delete</v-btn>
+    <div>
+      <v-btn class="mr-3" @click="router.push({ name: 'edit-card', params: { 'card': card.id }})">Edit</v-btn>
+      <v-btn @click="deleteFunction">Delete</v-btn>
+    </div>
   </v-sheet>
 </template>
