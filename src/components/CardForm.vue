@@ -10,6 +10,16 @@ const props = defineProps<{
   buttonText: string
 }>()
 
+const options = {
+  modules: {
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'align': [] }],
+    ]
+  }
+}
+
 const cardForm = reactive(props.cardFormTemplate)
 </script>
 
@@ -17,7 +27,7 @@ const cardForm = reactive(props.cardFormTemplate)
   <v-form>
     <div>
       <QuillEditor
-        toolbar="minimal"
+        :options="options"
         v-model:content="cardForm.question"
         contentType="html"
         placeholder="Question"
@@ -25,7 +35,7 @@ const cardForm = reactive(props.cardFormTemplate)
     </div>
     <div class="mt-3">
       <QuillEditor
-        toolbar="minimal"
+        :options="options"
         v-model:content="cardForm.answer"
         contentType="html"
         placeholder="Answer"
