@@ -16,7 +16,9 @@ const updateCards = (): void => {
 
 watch(pageSelected, () => updateCards())
 
-const deleteCardAction = (cardId: string): void => {
+const deleteCardAction = (cardId: string | null): void => {
+  if(!cardId) return
+
   deleteCardApi(cardId)
   updateCards()
 }

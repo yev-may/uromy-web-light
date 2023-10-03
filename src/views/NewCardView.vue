@@ -4,7 +4,7 @@ import CardForm from "@/components/CardForm.vue"
 import { ref } from "vue"
 import { createStudyCard } from "@/core/service/studyService"
 
-const formRefreshKey = ref(true)
+const formRefreshKey = ref(0)
 const dialog = ref(false)
 
 const createCardFormTemplate = (): Card => {
@@ -17,7 +17,7 @@ const createCardFormTemplate = (): Card => {
 
 const createCardToStudy = (card: Card) => {
   createStudyCard(card)
-  formRefreshKey.value = !formRefreshKey.value
+  formRefreshKey.value++
   dialog.value = true
 }
 </script>

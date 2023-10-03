@@ -22,7 +22,9 @@ export const createStudyCard = (card: Card): void => {
 }
 
 export const submitAnswer = (card: Card, answerResult: boolean): void => {
-  const studyCard: StudyCard = getStudyCards().find(studyCard => studyCard.cardId === card.id)
+  const studyCard: StudyCard | undefined = getStudyCards().find(studyCard => studyCard.cardId === card.id)
+  if(!studyCard) return
+
   const newLevel: number = getNewLevel(studyCard.level, answerResult)
   if(newLevel >= LEVEL_DELAY_MAP.length) {
     removeStudyCard(studyCard.cardId)
