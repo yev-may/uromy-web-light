@@ -1,7 +1,7 @@
-import { removeStudyCard } from '@/core/dao/studyDao'
-import { removeCard } from '@/core/dao/cardDao'
+import { studyDao_removeStudyCard } from '@/core/dao/studyDao'
+import { cardDao_deleteCard } from '@/core/dao/cardDao'
 
 export const deleteCardApi = (cardId: string): void => {
-  removeStudyCard(cardId)
-  removeCard(cardId)
+  studyDao_removeStudyCard(cardId)
+  cardDao_deleteCard(cardId)
 }

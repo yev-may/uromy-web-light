@@ -1,51 +1,67 @@
-import storage from '@/core/dao/storage/storage'
+import { storage_deleteEntity, storage_findEntity, storage_saveEntity } from '@/core/dao/storage/storage'
+import { dao_generateNextId } from "@/core/dao/abstractDao"
 
-export const saveCard = (card: Card): Card => {
-  const cardId: string = card.id || 'c-' + storage.getNextId('card_seq')
-  card.id = cardId
-  storage.saveEntity<Card>(cardId, card)
-  addCardIdToList(cardId)
-  return getCard(cardId)
+const CARD_IDS_STORAGE_KEY = 'ids_card'
+const CARD_SEQUENCE_KEY = 'seq_card'
+
+export function cardDao_getCard(cardId: string): Card {
+  const foundCard: Card | null = storage_findEntity<Card>(cardId)
+  if(!foundCard) throw new Error(`Card with id ${cardId} not found`)
+  return foundCard
 }
 
-export const getCard = (cardId: string): Card => {
-  return storage.getEntity<Card>(cardId)
+export function cardDao_getCardPageCount(size: number): number {
+  return Math.ceil(getCardIds().length / size)
 }
 
-export const removeCard = (cardId: string): void => {
-  removeCardFromList(cardId)
-  localStorage.removeItem(cardId)
-}
-
-const addCardIdToList = (cardId: string): void => {
-  const cardIdList: Array<string> = getCardIdList()
-  cardIdList.push(cardId)
-  saveCardIdList(cardIdList)
-}
-
-const removeCardFromList = (cardId: string): void => {
-  const cardIdList: Array<string> = getCardIdList()
-  const filteredCards: Array<string> = cardIdList.filter(id => id !== cardId)
-  saveCardIdList(filteredCards)
-}
-
-export const getCardIdList = (): Array<string> => {
-  return storage.getArray<string>('card-id-list')
-}
-
-const saveCardIdList = (cardIdList: Array<string>): void => {
-  const uniqueCardIds: Set<string> = new Set(cardIdList)
-  return storage.saveArray<string>('card-id-list', Array.from(uniqueCardIds))
-}
-
-export const getCardPageCount = (size: number): number => {
-  const cardIdList: Array<string> = getCardIdList()
-  const cardCount: number = cardIdList.length
-  return Math.ceil(cardCount / size)
-}
-
-export const getCardPage = (page: number, size: number): Array<Card> => {
-  const cardIdList: Array<string> = getCardIdList()
+export function cardDao_getCardPage(page: number, size: number): Array<Card> {
+  const cardIdList: Array<string> = getCardIds()
   const pageIdList: Array<string> = cardIdList.slice(page * size, page * size + size)
-  return pageIdList.map(cardId => getCard(cardId))
+  return pageIdList.map(cardId => cardDao_getCard(cardId))
+}
+
+export function cardDao_createCard(card: Card): Card {
+  const cardId: string = generateUid()
+  card.id = cardId
+  storage_saveEntity(cardId, card)
+  addCardToIds(cardId)
+  return card
+}
+
+export function cardDao_updateCard(card: Card): void {
+  const cardId: string | null = card.id
+  if(!cardId) throw new Error('Cannot update card without id')
+  storage_saveEntity(cardId, card)
+}
+
+export function cardDao_deleteCard(cardId: string): void {
+  storage_deleteEntity(cardId)
+  deleteCardFromIds(cardId)
+}
+
+// --- Card ids --- //
+
+function getCardIds(): Array<string> {
+  return  storage_findEntity<Array<string>>(CARD_IDS_STORAGE_KEY) || []
+}
+
+function addCardToIds (cardId: string): void {
+  const cardIds: Array<string> = getCardIds()
+  cardIds.push(cardId)
+  saveCardIds(cardIds)
+}
+
+function deleteCardFromIds (cardId: string): void {
+  const cardIdList: Array<string> = getCardIds()
+  const filteredCards: Array<string> = cardIdList.filter(id => id !== cardId)
+  saveCardIds(filteredCards)
+}
+
+function saveCardIds (cardIdList: Array<string>): void {
+  const uniqueCardIds: Set<string> = new Set(cardIdList)
+  storage_saveEntity<Array<string>>(CARD_IDS_STORAGE_KEY, Array.from(uniqueCardIds))
+}
+
+function generateUid(): string {
+  return  'c-' + dao_generateNextId(CARD_SEQUENCE_KEY);
 }

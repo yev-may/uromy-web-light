@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { ref } from "vue"
-import { submitAnswer } from "@/core/service/studyService";
+import { studyService_submitAnswer } from "@/core/service/studyService";
 
 const props = defineProps<{
   card: Card,
@@ -9,7 +9,7 @@ const props = defineProps<{
 }>()
 
 const confirmAnswer = (isRight: boolean): void => {
-  submitAnswer(props.card, isRight)
+  studyService_submitAnswer(props.card, isRight)
   props.submitCallback()
 }
 

@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import CardPanel from "@/components/CardPanel.vue"
 import { ref, watch } from "vue"
-import { getCardPage, getCardPageCount } from "@/core/dao/cardDao"
 import { deleteCardApi } from "@/core/facade/cardFacade"
+import { cardDao_getCardPage, cardDao_getCardPageCount } from "@/core/dao/cardDao";
 
 const PAGE_SIZE: number = 5
-const pageCount = ref<number>(getCardPageCount(PAGE_SIZE))
+const pageCount = ref<number>(cardDao_getCardPageCount(PAGE_SIZE))
 const pageSelected = ref<number>(1)
-const cards = ref<Array<Card>>(getCardPage(0, PAGE_SIZE))
+const cards = ref<Array<Card>>(cardDao_getCardPage(0, PAGE_SIZE))
 
 const updateCards = (): void => {
-  pageCount.value = getCardPageCount(PAGE_SIZE)
-  cards.value = getCardPage(pageSelected.value - 1, PAGE_SIZE)
+  pageCount.value = cardDao_getCardPageCount(PAGE_SIZE)
+  cards.value = cardDao_getCardPage(pageSelected.value - 1, PAGE_SIZE)
 }
 
 watch(pageSelected, () => updateCards())

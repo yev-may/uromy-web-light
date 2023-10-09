@@ -2,7 +2,7 @@
 import BackButton from "@/components/BackButton.vue"
 import CardForm from "@/components/CardForm.vue"
 import { ref } from "vue"
-import { createStudyCard } from "@/core/service/studyService"
+import { studyService_createStudyCard } from "@/core/service/studyService"
 
 const formRefreshKey = ref(0)
 const dialog = ref(false)
@@ -16,7 +16,7 @@ const createCardFormTemplate = (): Card => {
 }
 
 const createCardToStudy = (card: Card) => {
-  createStudyCard(card)
+  studyService_createStudyCard(card)
   formRefreshKey.value++
   dialog.value = true
 }

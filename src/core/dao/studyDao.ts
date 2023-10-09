@@ -1,27 +1,22 @@
-import storage from '@/core/dao/storage/storage'
-import StudyCard from '@/views/StudyCardView.vue'
+import { storage_findEntity, storage_saveEntity } from '@/core/dao/storage/storage'
 
-const STUDY_CARDS_KEY = 'study-cards'
+const STUDY_CARDS_KEY = 'study_cards'
 
-export const getStudyCards = (): Array<StudyCard> => {
-  return storage.getArray<StudyCard>(STUDY_CARDS_KEY)
+export function studyDao_getStudyCards(): Array<StudyCard> {
+  return storage_findEntity<Array<StudyCard>>(STUDY_CARDS_KEY) || []
 }
 
-const getStudyCardsWithout = (studyCard: StudyCard): Array<StudyCard> => {
-  return getStudyCards().filter(sc => sc.cardId !== studyCard.cardId)
-}
-export const saveStudyCards = (studyCards: Array<StudyCard>): void => {
-  storage.saveArray<StudyCard>(STUDY_CARDS_KEY, studyCards)
-}
-
-export const saveStudyCard = (studyCard: StudyCard): void => {
-  const studyCards: Array<StudyCard> = getStudyCardsWithout(studyCard)
+export function studyDao_saveStudyCard (studyCard: StudyCard): void {
+  const studyCards: Array<StudyCard> = studyDao_getStudyCards().filter(sc => sc.cardId !== studyCard.cardId)
   studyCards.push(studyCard)
   saveStudyCards(studyCards)
 }
 
-export const removeStudyCard = (cardId: string): void => {
-  const studyCards: Array<StudyCard> = getStudyCards()
-  const filteredStudyCards: Array<StudyCard> = studyCards.filter(studyCard => studyCard.cardId !== cardId)
+export function studyDao_removeStudyCard (cardId: string): void {
+  const filteredStudyCards: Array<StudyCard> = studyDao_getStudyCards().filter(sc => sc.cardId !== cardId)
   saveStudyCards(filteredStudyCards)
+}
+
+function saveStudyCards (studyCards: Array<StudyCard>): void {
+  storage_saveEntity(STUDY_CARDS_KEY, studyCards)
 }

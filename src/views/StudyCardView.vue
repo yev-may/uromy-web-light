@@ -2,7 +2,7 @@
 import BackButton from "@/components/BackButton.vue"
 import StudyCard from "@/components/StudyCard.vue"
 import { reactive, onMounted } from "vue"
-import { getNextCard } from "@/core/service/studyService"
+import { studyService_getNextCard } from "@/core/service/studyService"
 
 const card = reactive<Card>({
   id: null,
@@ -12,7 +12,7 @@ const card = reactive<Card>({
 
 const updateCard = () => {
   card.id = null;
-  const nextCard: Card | null = getNextCard();
+  const nextCard: Card | null = studyService_getNextCard();
   if(nextCard) {
     syncCard(nextCard);
   }

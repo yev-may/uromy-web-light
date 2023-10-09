@@ -2,16 +2,16 @@
 import BackButton from "@/components/BackButton.vue";
 import CardForm from "@/components/CardForm.vue";
 import { ref } from "vue";
-import { getCard, saveCard } from "@/core/dao/cardDao";
+import { cardDao_getCard, cardDao_updateCard } from "@/core/dao/cardDao";
 import { useRoute } from "vue-router";
 import router from "@/router";
 
 const route = useRoute();
 const formRefreshKey = ref(0)
-const card: Card = getCard(route.params.card as string)
+const card: Card = cardDao_getCard(route.params.card as string)
 
 function updateCard(card: Card) {
-  saveCard(card)
+  cardDao_updateCard(card)
   router.back()
 }
 </script>
