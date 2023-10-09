@@ -1,5 +1,9 @@
 
-export const getStorageSize = (): number => {
+export function getStorageSizeKB(): number {
+  return +(getStorageSize() / 1024).toFixed(2)
+}
+
+function getStorageSize(): number {
   let total = 0, keyLength: number, key: string
   for (key in localStorage) {
     if (!localStorage.hasOwnProperty(key)) { continue }
@@ -7,8 +11,4 @@ export const getStorageSize = (): number => {
     total += keyLength
   }
   return total
-}
-
-export const getStorageSizeKB = (): number => {
-  return +(getStorageSize() / 1024).toFixed(2)
 }

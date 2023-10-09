@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getStorageSizeKB } from "@/core/service/storageService"
+import { getStorageSizeKB } from "@/core/service/storageStateService"
 
 const storageSizeKB = getStorageSizeKB()
 const sizePercent = storageSizeKB / 5
