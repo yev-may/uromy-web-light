@@ -1,10 +1,7 @@
 <template>
   <div class="navigation">
     <div class="navigation-item">
-      <a class="navigation-link v-btn" href="/study">Study</a>
-    </div>
-    <div class="navigation-item">
-      <a class="navigation-link v-btn" href="/about">About</a>
+      <a class="navigation-link v-btn" @click="router.push({ name: 'local-main' })">Study</a>
     </div>
   </div>
 </template>
@@ -25,3 +22,6 @@
   }
 }
 </style>
+<script setup>
+import router from "@/router"
+</script>

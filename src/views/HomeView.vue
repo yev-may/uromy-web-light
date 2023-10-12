@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import router from "@/router";
+import Layout from "@/layout/Layout.vue";
 </script>
 <template>
+  <Layout/>
   <v-container class="fill-height">
     <v-responsive class="fill-height align-center text-center">
       <v-img
@@ -17,7 +19,7 @@ import router from "@/router";
       </div>
       <v-btn
         class="mt-5"
-        @click="router.push({ name: 'study' })"
+        @click="router.push({ name: 'local-main' })"
       >Get started</v-btn>
     </v-responsive>
   </v-container>
