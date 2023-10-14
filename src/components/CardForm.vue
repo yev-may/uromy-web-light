@@ -14,7 +14,6 @@ const options = {
   modules: {
     toolbar: [
       ['bold', 'italic', 'underline'],
-      [{ 'size': ['small', false, 'large', 'huge'] }],
       [{ 'align': [] }],
     ]
   }
