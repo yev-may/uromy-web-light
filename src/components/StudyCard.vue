@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import CardSide from '@/components/CardSide.vue'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { ref } from "vue"
-import { studyService_submitAnswer } from "@/core/service/studyService";
+import { studyService_submitAnswer } from '@/core/service/studyService'
 
 const props = defineProps<{
   card: Card,
@@ -17,29 +18,13 @@ const answerShowed = ref(false)
 </script>
 
 <template>
-  <v-sheet
-    class="pa-3"
-    color="grey-lighten-3"
-    border
-    rounded
-  >
-    <div
-      class="ql-editor"
-      v-html="card.question"
-    />
-  </v-sheet>
-  <v-sheet
+  <CardSide
+    :content="card.question"
+  />
+  <CardSide
     v-if="answerShowed"
-    class="pa-3 mt-3"
-    color="grey-lighten-3"
-    border
-    rounded
-  >
-    <div
-      class="ql-editor"
-      v-html="card.answer"
-    />
-  </v-sheet>
+    :content="card.answer"
+  />
   <v-container class="pa-0 mt-3">
     <v-row v-if="!answerShowed">
       <v-col>
