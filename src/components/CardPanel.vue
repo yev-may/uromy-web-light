@@ -17,8 +17,18 @@ defineProps<{
         :content="card.question"
       />
       <div class="actions">
-        <v-btn class="mt-3 mr-3" @click="router.push({ name: 'edit-card', params: { 'card': card.id }})">Edit</v-btn>
-        <v-btn class="mt-3 mr-3" @click="deleteFunction">Delete</v-btn>
+        <v-btn
+          class="mt-3 mr-3"
+          icon="mdi-trash-can-outline"
+          density="comfortable"
+          @click="deleteFunction"
+        />
+        <v-btn
+          class="mt-3 mr-3 ma-0"
+          icon="mdi-cog-outline"
+          density="comfortable"
+          @click="router.push({ name: 'edit-card', params: { 'card': card.id }})"
+        />
       </div>
     </div>
     <div class="preview-hider" />
@@ -58,7 +68,6 @@ defineProps<{
         top: 0;
         right: 0;
         display: flex;
-        flex-direction: column;
       }
     }
 
