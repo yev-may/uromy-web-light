@@ -25,47 +25,46 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .card-preview {
   position: relative;
   max-height: 80px;
   overflow: hidden;
-}
 
-.card-preview > .content > .actions {
-  display: none;
-}
+  .content {
+    position: relative;
 
-.card-preview:hover > .content > .actions {
-  display: flex;
-}
+    .actions {
+      display: none;
+    }
+  }
 
-.card-preview:hover {
-  max-height: none;
-}
+  .preview-hider {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    height: 20px;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, white 100%);
+  }
 
-.card-preview:hover > .preview-hider {
-  display: none;
-}
+  &:hover {
+    max-height: none;
 
-.preview-hider {
-  position: absolute;
-  bottom: 0;
-  z-index: 1;
-  height: 20px;
-  width: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, white 100%);
-}
+    .content {
 
-.content {
-  position: relative;
-}
+      .actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+      }
+    }
 
-.actions {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
+    .preview-hider {
+      display: none;
+    }
+  }
 }
 </style>
