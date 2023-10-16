@@ -2,9 +2,9 @@
 import { getStorageSizeKB } from "@/core/service/storageStateService"
 
 const storageSizeKB = getStorageSizeKB()
-const sizePercent = storageSizeKB / 5
+const sizePercent = storageSizeKB / 50
 const sizePercentMessage = sizePercent.toFixed(2) + ' %'
-const sizeMessage = storageSizeKB + ' KB / 5120 KB'
+const sizeMessage = (storageSizeKB / 1024).toFixed(2) + '  / 5 MB'
 </script>
 
 <template>
