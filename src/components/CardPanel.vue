@@ -2,6 +2,7 @@
 import CardSide from '@/components/CardSide.vue'
 import Preview from '@/components/Preview.vue'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { ref } from 'vue'
 import router from '@/router'
 
 defineProps<{
@@ -9,6 +10,7 @@ defineProps<{
   deleteFunction: Function,
 }>()
 
+const isDialogDisplayed = ref(false)
 </script>
 
 <template>
@@ -21,7 +23,7 @@ defineProps<{
         class="mt-3 mr-3"
         icon="mdi-trash-can-outline"
         density="comfortable"
-        @click="deleteFunction"
+        @click="isDialogDisplayed = true"
       />
       <v-btn
         class="mt-3 mr-3 ma-0"
@@ -31,6 +33,20 @@ defineProps<{
       />
     </div>
   </Preview>
+  <v-dialog
+    v-model="isDialogDisplayed"
+    width="auto"
+  >
+    <v-card>
+      <v-card-text>
+        Are you sure you want to delete this card?
+      </v-card-text>
+      <v-card-actions class="d-flex justify-center">
+        <v-btn variant="outlined" @click="isDialogDisplayed = false">No</v-btn>
+        <v-btn variant="outlined" @click="deleteFunction">Yes</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <style lang="css" scoped>
