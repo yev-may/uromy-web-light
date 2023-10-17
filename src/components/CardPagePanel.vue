@@ -1,25 +1,25 @@
 <script setup lang="ts">
 import CardPanel from "@/components/CardPanel.vue"
 import { ref, watch } from "vue"
-import { deleteCardApi } from "@/core/facade/cardFacade"
-import { cardDao_getCardPage, cardDao_getCardPageCount } from "@/core/dao/cardDao";
+import cardDao from "@/core/dao/cardDao";
+import studyService from "@/core/service/studyService";
 
 const PAGE_SIZE: number = 5
-const pageCount = ref<number>(cardDao_getCardPageCount(PAGE_SIZE))
+const pageCount = ref<number>(cardDao.getCardPageCount(PAGE_SIZE))
 const pageSelected = ref<number>(1)
-const cards = ref<Array<Card>>(cardDao_getCardPage(0, PAGE_SIZE))
+const cards = ref<Array<Card>>(cardDao.getCardPage(0, PAGE_SIZE))
 
 const updateCards = (): void => {
-  pageCount.value = cardDao_getCardPageCount(PAGE_SIZE)
-  cards.value = cardDao_getCardPage(pageSelected.value - 1, PAGE_SIZE)
+  pageCount.value = cardDao.getCardPageCount(PAGE_SIZE)
+  cards.value = cardDao.getCardPage(pageSelected.value - 1, PAGE_SIZE)
 }
 
 watch(pageSelected, () => updateCards())
 
 const deleteCardAction = (cardId: string | null): void => {
-  if(!cardId) return
+  if (!cardId) return
 
-  deleteCardApi(cardId)
+  studyService.deleteCard(cardId)
   updateCards()
 }
 </script>
@@ -35,5 +35,5 @@ const deleteCardAction = (cardId: string | null): void => {
   <v-pagination
     class="mt-3"
     v-model="pageSelected"
-    :length="pageCount" />
+    :length="pageCount"/>
 </template>

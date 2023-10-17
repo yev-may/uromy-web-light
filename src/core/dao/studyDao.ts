@@ -1,22 +1,28 @@
-import { storage_findEntity, storage_saveEntity } from '@/core/dao/storage/storage'
+import { AbstractDao } from "@/core/dao/AbstractDao";
+import localStorageService from "@/core/dao/storage/localStorageService";
 
 const STUDY_CARDS_KEY = 'study_cards'
 
-export function studyDao_getStudyCards(): Array<StudyCard> {
-  return storage_findEntity<Array<StudyCard>>(STUDY_CARDS_KEY) || []
+class StudyDao extends AbstractDao<Array<StudyCard> > {
+
+  getStudyCards(): Array<StudyCard> {
+    return localStorageService.getEntity(STUDY_CARDS_KEY) || []
+  }
+
+  saveStudyCard(studyCard: StudyCard): void {
+    const studyCards: Array<StudyCard> = this.getStudyCards().filter(sc => sc.cardId !== studyCard.cardId)
+    studyCards.push(studyCard)
+    this.saveStudyCards(studyCards)
+  }
+
+  removeStudyCard(cardId: string): void {
+    const filteredStudyCards: Array<StudyCard> = this.getStudyCards().filter(sc => sc.cardId !== cardId)
+    this.saveStudyCards(filteredStudyCards)
+  }
+
+  saveStudyCards (studyCards: Array<StudyCard>): void {
+    this.saveEntity(STUDY_CARDS_KEY, studyCards)
+  }
 }
 
-export function studyDao_saveStudyCard (studyCard: StudyCard): void {
-  const studyCards: Array<StudyCard> = studyDao_getStudyCards().filter(sc => sc.cardId !== studyCard.cardId)
-  studyCards.push(studyCard)
-  saveStudyCards(studyCards)
-}
-
-export function studyDao_removeStudyCard (cardId: string): void {
-  const filteredStudyCards: Array<StudyCard> = studyDao_getStudyCards().filter(sc => sc.cardId !== cardId)
-  saveStudyCards(filteredStudyCards)
-}
-
-function saveStudyCards (studyCards: Array<StudyCard>): void {
-  storage_saveEntity(STUDY_CARDS_KEY, studyCards)
-}
+export default new StudyDao()

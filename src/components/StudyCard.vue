@@ -2,7 +2,7 @@
 import CardSide from '@/components/CardSide.vue'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { ref } from "vue"
-import { studyService_submitAnswer } from '@/core/service/studyService'
+import studyService from "@/core/service/studyService";
 
 const props = defineProps<{
   card: Card,
@@ -10,7 +10,7 @@ const props = defineProps<{
 }>()
 
 const confirmAnswer = (isRight: boolean): void => {
-  studyService_submitAnswer(props.card, isRight)
+  studyService.submitAnswer(props.card, isRight)
   props.submitCallback()
 }
 

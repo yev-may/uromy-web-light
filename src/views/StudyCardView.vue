@@ -2,12 +2,12 @@
 import BackButton from "@/components/BackButton.vue"
 import StudyCard from "@/components/StudyCard.vue"
 import { reactive, onMounted } from "vue"
-import { studyService_getNextCard } from "@/core/service/studyService"
+import studyService from "@/core/service/studyService";
 
 const card = reactive<Card>({ id: '', question: '', answer: ''})
 
 const updateCard = () => {
-  const nextCard: Card | null = studyService_getNextCard();
+  const nextCard: Card | null = studyService.getNextCard();
   if(!nextCard) {
     card.id = ''
     return
