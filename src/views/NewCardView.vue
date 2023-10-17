@@ -7,9 +7,8 @@ import { studyService_createStudyCard } from "@/core/service/studyService"
 const formRefreshKey = ref(0)
 const dialog = ref(false)
 
-const createCardFormTemplate = (): Card => {
+const createCardFormTemplate = (): NewCardForm => {
   return {
-    id: null,
     question: '',
     answer: '',
   }

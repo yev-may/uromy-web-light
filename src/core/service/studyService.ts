@@ -11,8 +11,8 @@ export function studyService_getNextCard(): Card | null {
   return studyCard ? cardDao_getCard(studyCard.cardId) : null
 }
 
-export function studyService_createStudyCard(card: Card): void {
-  const createdCard: Card = cardDao_createCard(card)
+export function studyService_createStudyCard(cardForm: NewCardForm): void {
+  const createdCard: Card = cardDao_createCard(cardForm)
   studyDao_saveStudyCard({
     cardId: createdCard.id || 'no-id-error-message',
     level: 0,

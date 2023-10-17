@@ -1,6 +1,4 @@
-interface Card {
-  id: string,
-
+interface NewCardForm {
   question: string,
   answer: string,
 }

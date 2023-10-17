@@ -20,11 +20,14 @@ export function cardDao_getCardPage(page: number, size: number): Array<Card> {
   return pageIdList.map(cardId => cardDao_getCard(cardId))
 }
 
-export function cardDao_createCard(card: Card): Card {
-  const cardId: string = generateUid()
-  card.id = cardId
-  storage_saveEntity(cardId, card)
-  addCardToIds(cardId)
+export function cardDao_createCard(newCardForm: NewCardForm): Card {
+  const card: Card = {
+    id: generateUid(),
+    question: newCardForm.question,
+    answer: newCardForm.answer
+  }
+  storage_saveEntity(card.id, card)
+  addCardToIds(card.id)
   return card
 }
 

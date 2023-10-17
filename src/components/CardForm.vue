@@ -5,7 +5,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import '@vueup/vue-quill/dist/vue-quill.bubble.css'
 
 const props = defineProps<{
-  cardFormTemplate: Card,
+  cardFormTemplate: Card | NewCardForm,
   submitFunction: Function,
   buttonText: string
 }>()

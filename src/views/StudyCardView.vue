@@ -4,18 +4,15 @@ import StudyCard from "@/components/StudyCard.vue"
 import { reactive, onMounted } from "vue"
 import { studyService_getNextCard } from "@/core/service/studyService"
 
-const card = reactive<Card>({
-  id: null,
-  question: '',
-  answer: '',
-})
+const card = reactive<Card>({ id: '', question: '', answer: ''})
 
 const updateCard = () => {
-  card.id = null;
   const nextCard: Card | null = studyService_getNextCard();
-  if(nextCard) {
-    syncCard(nextCard);
+  if(!nextCard) {
+    card.id = ''
+    return
   }
+  syncCard(nextCard);
 }
 
 const syncCard = (nextCard: Card) => {
