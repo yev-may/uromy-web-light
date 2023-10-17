@@ -40,6 +40,9 @@ const isDialogDisplayed = ref(false)
     <v-card>
       <v-card-text>
         Are you sure you want to delete this card?
+        <CardSide
+          :content="card.question"
+        />
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
         <v-btn variant="outlined" @click="isDialogDisplayed = false">No</v-btn>
