@@ -9,30 +9,30 @@ class StudyService {
     const studyCard: StudyCard | null = studyCards
       .find(studyCard => studyCard.nextStudyDate < now) || null
 
-    return studyCard ? cardDao.getCard(studyCard.cardId) : null
+    return studyCard ? cardDao.getCard(studyCard.cardKey) : null
   }
 
   createStudyCard(cardForm: NewCardForm): void {
     const createdCard: Card = cardDao.createCard(cardForm)
     studyDao.saveStudyCard({
-      cardId: createdCard.id || 'no-id-error-message',
+      cardKey: createdCard.key,
       level: 0,
       nextStudyDate: new Date(),
     })
   }
 
-  deleteCard = (cardId: string): void => {
-    studyDao.removeStudyCard(cardId)
-    cardDao.deleteCard(cardId)
+  deleteCard(cardKey: CardKey): void {
+    studyDao.removeStudyCard(cardKey.toString())
+    cardDao.deleteCard(cardKey)
   }
 
   submitAnswer(card: Card, answerResult: boolean): void {
-    const studyCard: StudyCard | undefined = studyDao.getStudyCards().find(studyCard => studyCard.cardId === card.id)
-    if (!studyCard) throw new Error(`Study card with id ${card.id} not found`)
+    const studyCard: StudyCard | undefined = studyDao.getStudyCards().find(studyCard => studyCard.cardKey.id === card.key.id)
+    if (!studyCard) throw new Error(`Study card with id ${card.key.id} not found`)
 
     const newLevel: number = this.getNewLevel(studyCard.level, answerResult)
     if (newLevel >= LEVEL_DELAY_MAP.length) {
-      studyDao.removeStudyCard(studyCard.cardId)
+      studyDao.removeStudyCard(cardDao.serializeCardKey(card.key))
       return
     }
 

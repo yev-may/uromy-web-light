@@ -1,0 +1,3 @@
+interface NewBoxForm {
+  title: string
+}

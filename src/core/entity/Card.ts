@@ -1,6 +1,10 @@
 interface Card {
-  id: string,
+  key: CardKey
+  question: string
+  answer: string
+}
 
-  question: string,
-  answer: string,
+interface CardKey {
+  boxId: string
+  id: string
 }

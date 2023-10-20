@@ -3,18 +3,23 @@ import BackButton from "@/components/BackButton.vue"
 import CardForm from "@/components/CardForm.vue"
 import { ref } from "vue"
 import studyService from "@/core/service/studyService";
+import { useRoute } from "vue-router";
 
+const route = useRoute()
+
+const boxId: string = route.params.boxId as string
 const formRefreshKey = ref(0)
 const dialog = ref(false)
 
 const createCardFormTemplate = (): NewCardForm => {
   return {
+    boxId: boxId,
     question: '',
     answer: '',
   }
 }
 
-const createCardToStudy = (card: Card) => {
+const createCardToStudy = (card: NewCardForm) => {
   studyService.createStudyCard(card)
   formRefreshKey.value++
   dialog.value = true

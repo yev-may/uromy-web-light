@@ -1,5 +1,5 @@
 interface StudyCard {
-  cardId: string,
+  cardKey: CardKey,
 
   level: number,
   nextStudyDate: Date,

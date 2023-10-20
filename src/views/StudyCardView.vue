@@ -4,23 +4,22 @@ import StudyCard from "@/components/StudyCard.vue"
 import { reactive, onMounted } from "vue"
 import studyService from "@/core/service/studyService";
 
-const card = reactive<Card>({ id: '', question: '', answer: ''})
+const card = reactive<Card>({ key: {id: '', boxId: '' }, question: '', answer: ''})
 
 const updateCard = () => {
   const nextCard: Card | null = studyService.getNextCard();
   if(!nextCard) {
-    card.id = ''
+    card.key = {id: '', boxId: '' }
     return
   }
   syncCard(nextCard);
 }
 
 const syncCard = (nextCard: Card) => {
-  card.id = nextCard.id;
+  card.key = { id: nextCard.key.id, boxId: nextCard.key.boxId }
   card.question = nextCard.question;
   card.answer = nextCard.answer;
 }
-
 onMounted(() => updateCard());
 </script>
 
@@ -31,11 +30,11 @@ onMounted(() => updateCard());
         <v-row class="justify-center">
           <v-col cols="12" sm="6" md="4">
             <p class="text-center"
-               v-if="!card.id"
+               v-if="!card.key.id"
             >No cards to repeat</p>
             <StudyCard
               v-else
-              :key="card.id"
+              :key="card.key.id"
               :card="card"
               :submit-callback="updateCard"
             />

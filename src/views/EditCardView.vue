@@ -7,8 +7,12 @@ import router from "@/router";
 import cardDao from "@/core/dao/cardDao";
 
 const route = useRoute();
+
 const formRefreshKey = ref(0)
-const card: Card = cardDao.getCard(route.params.card as string)
+const card: Card = cardDao.getCard({
+  boxId: route.params.boxId as string,
+  id: route.params.cardId as string,
+})
 
 function updateCard(card: Card) {
   cardDao.updateCard(card)

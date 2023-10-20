@@ -10,13 +10,13 @@ class StudyDao extends AbstractDao<Array<StudyCard> > {
   }
 
   saveStudyCard(studyCard: StudyCard): void {
-    const studyCards: Array<StudyCard> = this.getStudyCards().filter(sc => sc.cardId !== studyCard.cardId)
+    const studyCards: Array<StudyCard> = this.getStudyCards().filter(sc => sc.cardKey.id !== studyCard.cardKey.id)
     studyCards.push(studyCard)
     this.saveStudyCards(studyCards)
   }
 
   removeStudyCard(cardId: string): void {
-    const filteredStudyCards: Array<StudyCard> = this.getStudyCards().filter(sc => sc.cardId !== cardId)
+    const filteredStudyCards: Array<StudyCard> = this.getStudyCards().filter(sc => sc.cardKey.id !== cardId)
     this.saveStudyCards(filteredStudyCards)
   }
 

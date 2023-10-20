@@ -29,7 +29,7 @@ const isDialogDisplayed = ref(false)
         class="mt-3 mr-3 ma-0"
         icon="mdi-cog-outline"
         density="comfortable"
-        @click="router.push({ name: 'edit-card', params: { 'card': card.id }})"
+        @click="router.push({ name: 'edit-card', params: { 'cardId': card.key.id, 'boxId': card.key.boxId }})"
       />
     </div>
   </Preview>

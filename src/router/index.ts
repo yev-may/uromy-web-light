@@ -4,6 +4,9 @@ import NewCardView from "@/views/NewCardView.vue";
 import StudyCardView from "@/views/StudyCardView.vue";
 import StorageView from "@/views/StorageView.vue";
 import EditCardView from "@/views/EditCardView.vue";
+import BoxView from "@/views/BoxView.vue";
+import EditBoxView from "@/views/EditBoxView.vue";
+import NewBoxView from "@/views/NewBoxView.vue";
 
 const routes = [
   {
@@ -11,19 +14,38 @@ const routes = [
     path: '/',
     component: MainMenuView
   },
+
+  {
+    name: 'box',
+    path: '/boxes/:boxId',
+    component: BoxView
+  }, {
+    name: 'new-box',
+    path: '/boxes/new',
+    component: NewBoxView
+  }, {
+    name: 'edit-box',
+    path: '/boxes/:boxId/edit',
+    component: EditBoxView
+  },
+
   {
     name: 'new-card',
-    path: '/new-card',
+    path: '/boxes/:boxId/cards/new',
     component: NewCardView
   }, {
     name: 'edit-card',
-    path: '/edit-card/:card',
+    path: '/boxes/:boxId/edit-card/:cardId',
     component: EditCardView
-  }, {
+  },
+
+  {
     name: 'study-card',
     path: '/study-card',
     component: StudyCardView
-  }, {
+  },
+
+  {
     name: 'storage',
     path: '/storage',
     component: StorageView

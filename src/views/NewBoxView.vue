@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import StorageStatus from "@/components/StorageStatus.vue";
 import BackButton from "@/components/BackButton.vue";
-import BoxesPanel from "@/components/BoxesPanel.vue";
+import BoxForm from "@/components/BoxForm.vue";
 </script>
 
 <template>
@@ -10,12 +9,12 @@ import BoxesPanel from "@/components/BoxesPanel.vue";
       <v-container>
         <v-row class="justify-center">
           <v-col cols="12" sm="6" md="4">
-            <StorageStatus />
-          </v-col>
-        </v-row>
-        <v-row class="justify-center">
-          <v-col cols="12" sm="6" md="4">
-            <BoxesPanel />
+
+            <BoxForm
+              :box-form-template="{ title: '' }"
+              button-text="Create"
+            />
+
           </v-col>
         </v-row>
       </v-container>

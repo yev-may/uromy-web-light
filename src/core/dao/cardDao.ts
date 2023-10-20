@@ -1,69 +1,77 @@
 import { AbstractDao } from '@/core/dao/AbstractDao'
-import localStorageService from "@/core/dao/storage/localStorageService";
+import localStorageService from "@/core/dao/storage/localStorageService"
 
 class CardDao extends AbstractDao<Card> {
-  CARD_IDS_STORAGE_KEY = 'ids_card'
+  CARD_ID_PREFIX = 'c_'
+  CARD_KEYS_PREFIX = 'keys_card_'
   CARD_SEQUENCE_KEY = 'seq_card'
 
-  getCard(cardId: string): Card {
-    return this.getEntity(cardId)
+  getCard(cardKey: CardKey): Card {
+    return this.getEntity(this.serializeCardKey(cardKey))
   }
 
-  getCardPageCount(size: number): number {
-    return Math.ceil(this.getCardIds().length / size)
+  getCardPageCount(size: number, boxId: string): number {
+    return Math.ceil(this.getCardKeys(boxId).length / size)
   }
 
-  getCardPage(page: number, size: number): Array<Card> {
-    const cardIdList: Array<string> = this.getCardIds()
-    const pageIdList: Array<string> = cardIdList.slice(page * size, page * size + size)
-    return pageIdList.map(cardId => this.getCard(cardId))
+  getCardPage(page: number, size: number, boxId: string): Array<Card> {
+    const cardKeys: Array<CardKey> = this.getCardKeys(boxId)
+    const pageCardKeys: Array<CardKey> = cardKeys.slice(page * size, page * size + size)
+    return pageCardKeys.map(cardKey => this.getCard(cardKey))
   }
 
   createCard(newCardForm: NewCardForm): Card {
     const card: Card = {
-      id: this.generateUid(),
+      key: {
+        boxId: newCardForm.boxId,
+        id: this.generateUid()
+      },
       question: newCardForm.question,
       answer: newCardForm.answer
     }
-    this.saveEntity(card.id, card)
-    this.addCardToIds(card.id)
+    this.saveEntity(this.serializeCardKey(card.key), card)
+    this.addCardToKeys(card.key)
     return card
   }
 
   updateCard(card: Card): void {
-    const cardId: string | null = card.id
-    if(!cardId) throw new Error('Cannot update card without id')
+    const cardId: string = this.serializeCardKey(card.key)
+    if (!cardId) throw new Error('Cannot update card without id')
     this.saveEntity(cardId, card)
   }
 
-  deleteCard(cardId: string): void {
-    this.deleteEntity(cardId)
-    this.deleteCardFromIds(cardId)
+  deleteCard(cardKey: CardKey): void {
+    this.deleteEntity(this.serializeCardKey(cardKey))
+    this.deleteCardFromKeys(cardKey)
   }
 
-  getCardIds(): Array<string> {
-    return localStorageService.getEntity<Array<string>>(this.CARD_IDS_STORAGE_KEY) || []
+  getCardKeys(boxId: string): Array<CardKey> {
+    return localStorageService.getEntity<Array<CardKey>>(this.CARD_KEYS_PREFIX + boxId) || []
   }
 
-  addCardToIds (cardId: string): void {
-    const cardIds: Array<string> = this.getCardIds()
-    cardIds.push(cardId)
-    this.saveCardIds(cardIds)
+  addCardToKeys(cardKey: CardKey): void {
+    const cardIds: Array<CardKey> = this.getCardKeys(cardKey.boxId)
+    cardIds.push(cardKey)
+    this.saveCardKeys(cardIds, cardKey.boxId)
   }
 
-  deleteCardFromIds (cardId: string): void {
-    const cardIdList: Array<string> = this.getCardIds()
-    const filteredCards: Array<string> = cardIdList.filter(id => id !== cardId)
-    this.saveCardIds(filteredCards)
+  deleteCardFromKeys(cardKey: CardKey): void {
+    const cardIdList: Array<CardKey> = this.getCardKeys(cardKey.boxId)
+    const filteredCards: Array<CardKey> = cardIdList.filter(ck => ck.id !== cardKey.id)
+    this.saveCardKeys(filteredCards, cardKey.boxId)
   }
 
-  saveCardIds (cardIdList: Array<string>): void {
-    const uniqueCardIds: Set<string> = new Set(cardIdList)
-    localStorageService.saveEntity<Array<string>>(this.CARD_IDS_STORAGE_KEY, Array.from(uniqueCardIds))
+  saveCardKeys(cardKeys: Array<CardKey>, boxId: string): void {
+    const uniqueCardKeys: Set<CardKey> = new Set(cardKeys)
+    localStorageService.saveEntity<Array<CardKey>>(this.CARD_KEYS_PREFIX + boxId, Array.from(uniqueCardKeys))
+  }
+
+  serializeCardKey(cardKey: CardKey): string {
+    return cardKey.boxId +  '.' + cardKey.id
   }
 
   generateUid(): string {
-    return  'c-' + this.getSeqId(this.CARD_SEQUENCE_KEY);
+    return this.CARD_ID_PREFIX + this.getSeqId(this.CARD_SEQUENCE_KEY);
   }
 }
 
