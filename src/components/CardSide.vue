@@ -7,7 +7,6 @@ defineProps<{ content: string }>()
 <template>
   <v-sheet
     class="pa-3 mt-3"
-    color="grey-lighten-3"
     border
     rounded
   >

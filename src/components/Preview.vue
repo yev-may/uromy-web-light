@@ -22,8 +22,8 @@
     z-index: 1;
     bottom: 0;
     width: 100%;
-    height: 20px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, white 100%);
+    height: 15px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(var(--v-theme-background)) 100%);
   }
 
   &:hover {

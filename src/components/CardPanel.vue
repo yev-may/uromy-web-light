@@ -45,8 +45,8 @@ const isDialogDisplayed = ref(false)
         />
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
-        <v-btn variant="outlined" @click="isDialogDisplayed = false">No</v-btn>
-        <v-btn variant="outlined" @click="deleteFunction">Yes</v-btn>
+        <v-btn @click="isDialogDisplayed = false">No</v-btn>
+        <v-btn @click="deleteFunction">Yes</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

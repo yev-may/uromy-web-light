@@ -61,7 +61,7 @@ function deleteBox() {
       <v-card>
         <v-card-text>
           Are you sure you want to delete?:
-          <v-card variant="outlined">
+          <v-card>
             <v-card-text class="ql-editor">
               <div
                 v-html="box.title"
@@ -70,14 +70,10 @@ function deleteBox() {
           </v-card>
         </v-card-text>
         <v-card-actions class="d-flex justify-center">
-          <v-btn variant="outlined" @click="isDialogDisplayed = false">No</v-btn>
-          <v-btn variant="outlined" @click="deleteBox">Yes</v-btn>
+          <v-btn @click="isDialogDisplayed = false">No</v-btn>
+          <v-btn @click="deleteBox">Yes</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
   </div>
 </template>
-
-<style scoped lang="css">
-
-</style>

@@ -3,7 +3,7 @@ defineProps<{ box: Box }>()
 </script>
 
 <template>
-  <v-card variant="outlined">
+  <v-card>
     <v-card-text class="ql-editor">
       <div
         v-html="box.title"
