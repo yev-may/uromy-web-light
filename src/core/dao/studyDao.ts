@@ -15,8 +15,8 @@ class StudyDao extends AbstractDao<Array<StudyCard> > {
     this.saveStudyCards(studyCards)
   }
 
-  removeStudyCard(cardId: string): void {
-    const filteredStudyCards: Array<StudyCard> = this.getStudyCards().filter(sc => sc.cardKey.id !== cardId)
+  removeStudyCard(cardKey: CardKey): void {
+    const filteredStudyCards: Array<StudyCard> = this.getStudyCards().filter(sc => sc.cardKey.id !== cardKey.id)
     this.saveStudyCards(filteredStudyCards)
   }
 

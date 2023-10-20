@@ -22,7 +22,7 @@ class StudyService {
   }
 
   deleteCard(cardKey: CardKey): void {
-    studyDao.removeStudyCard(cardKey.toString())
+    studyDao.removeStudyCard(cardKey)
     cardDao.deleteCard(cardKey)
   }
 
@@ -32,7 +32,7 @@ class StudyService {
 
     const newLevel: number = this.getNewLevel(studyCard.level, answerResult)
     if (newLevel >= LEVEL_DELAY_MAP.length) {
-      studyDao.removeStudyCard(cardDao.serializeCardKey(card.key))
+      studyDao.removeStudyCard(card.key)
       return
     }
 
