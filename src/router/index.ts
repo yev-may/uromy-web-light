@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainMenuView from "@/views/MainMenuView.vue";
 import NewCardView from "@/views/NewCardView.vue";
 import StudyCardView from "@/views/StudyCardView.vue";
-import StorageView from "@/views/StorageView.vue";
+import BoxesView from "@/views/BoxesView.vue";
 import EditCardView from "@/views/EditCardView.vue";
 import BoxView from "@/views/BoxView.vue";
 import EditBoxView from "@/views/EditBoxView.vue";
@@ -16,6 +16,10 @@ const routes = [
   },
 
   {
+    name: 'boxes',
+    path: '/boxes',
+    component: BoxesView
+  }, {
     name: 'box',
     path: '/boxes/:boxId',
     component: BoxView
@@ -43,12 +47,6 @@ const routes = [
     name: 'study-card',
     path: '/study-card',
     component: StudyCardView
-  },
-
-  {
-    name: 'storage',
-    path: '/storage',
-    component: StorageView
   }
 ]
 

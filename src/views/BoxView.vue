@@ -13,7 +13,7 @@ const isDialogDisplayed = ref(false)
 
 function deleteBox() {
   boxDao.deleteBox(box.id)
-  router.push({ name: 'storage' })
+  router.push({ name: 'boxes' })
 }
 </script>
 

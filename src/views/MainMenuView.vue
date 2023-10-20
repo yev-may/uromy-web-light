@@ -17,8 +17,8 @@ import router from "@/router";
         <v-col cols="12" sm="6" md="4">
           <v-btn
             class="w-100"
-            text="Storage"
-            @click="router.push({ name: 'storage' })"
+            text="Material"
+            @click="router.push({ name: 'boxes' })"
           />
         </v-col>
       </v-row>
