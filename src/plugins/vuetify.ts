@@ -7,4 +7,7 @@ export default createVuetify({
   theme: {
     defaultTheme: 'dark',
   },
+  defaults: {
+    VBtn: { size: 'large', class: 'text-none' },
+  },
 })

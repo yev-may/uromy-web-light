@@ -11,7 +11,7 @@ defineProps<{ content: string }>()
     rounded
   >
     <div
-      class="ql-editor"
+      class="ql-editor text-body-1"
       v-html="content"
     />
   </v-sheet>
