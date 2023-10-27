@@ -1,27 +1,21 @@
 <script setup lang="ts">
+import ViewTemplate from "@/views/ViewTemplate.vue";
 import router from "@/router";
 </script>
 
 <template>
-  <div class="h-100 w-100 d-flex flex-column justify-center">
-    <v-container>
-      <v-row class="justify-center">
-        <v-col cols="12" sm="6" md="4">
-          <v-btn class="w-100"
-            text="Study"
-            @click="router.push({ name: 'study-card' })"
-          />
-        </v-col>
-      </v-row>
-      <v-row class="justify-center">
-        <v-col cols="12" sm="6" md="4">
-          <v-btn
-            class="w-100"
-            text="Material"
-            @click="router.push({ name: 'boxes' })"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+  <ViewTemplate>
+    <template v-slot:mid-section>
+      <v-btn
+        class="w-100"
+        text="Study"
+        @click="router.push({ name: 'study-card' })"
+      />
+      <v-btn
+        class="w-100 mt-5"
+        text="Material"
+        @click="router.push({ name: 'boxes' })"
+      />
+    </template>
+  </ViewTemplate>
 </template>
