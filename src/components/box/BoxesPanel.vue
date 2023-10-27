@@ -5,7 +5,6 @@ import boxDao from "@/core/dao/boxDao";
 import router from "@/router";
 
 const boxes = ref<Array<Box>>(boxDao.getBoxes())
-
 </script>
 
 <template>
@@ -18,7 +17,7 @@ const boxes = ref<Array<Box>>(boxDao.getBoxes())
     />
     <v-btn
       class="w-100 mt-3"
-      text="+"
+      text="Add Box"
       @click="router.push({ name: 'new-box' })"
     />
   </div>

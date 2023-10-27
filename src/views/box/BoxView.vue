@@ -6,6 +6,7 @@ import { reactive, ref } from "vue";
 import boxDao from "@/core/dao/boxDao";
 import router from "@/router";
 import { useRoute } from "vue-router";
+import Preview from "@/components/struct/Preview.vue";
 
 const route = useRoute()
 
@@ -21,21 +22,23 @@ function deleteBox() {
 <template>
   <ViewTemplate>
     <template v-slot:mid-section>
+      <h2 class="text-center" v-html="box.title"></h2>
       <CardPagePanel :box="box"/>
     </template>
     <template v-slot:bot-section>
-      <v-btn
-        class="mt-2 mr-2"
-        icon="mdi-trash-can-outline"
-        density="comfortable"
-        @click="isDialogDisplayed = true"
-      />
-      <v-btn
-        class="mt-2 mr-2 ma-0"
-        icon="mdi-cog-outline"
-        density="comfortable"
-        @click="router.push({ name: 'edit-box', params: { 'boxId': box.id }})"
-      />
+      <div class="d-flex justify-center">
+        <v-btn
+          icon="mdi-trash-can-outline"
+          density="comfortable"
+          @click="isDialogDisplayed = true"
+        />
+        <v-btn
+          class="ml-3"
+          icon="mdi-cog-outline"
+          density="comfortable"
+          @click="router.push({ name: 'edit-box', params: { 'boxId': box.id }})"
+        />
+      </div>
       <BackButton class="mt-5"/>
     </template>
   </ViewTemplate>
@@ -43,7 +46,7 @@ function deleteBox() {
   <v-dialog v-model="isDialogDisplayed" width="auto">
     <v-card>
       <v-card-text>
-        Are you sure you want to delete?:
+        Are you sure you want to delete this box?
         <v-card>
           <v-card-text class="ql-editor">
             <div
@@ -59,3 +62,7 @@ function deleteBox() {
     </v-card>
   </v-dialog>
 </template>
+
+<style lang="css" scoped>
+
+</style>

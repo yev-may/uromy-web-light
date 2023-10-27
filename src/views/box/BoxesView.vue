@@ -11,6 +11,7 @@ import BoxesPanel from "@/components/box/BoxesPanel.vue";
       <StorageStatus/>
     </template>
     <template v-slot:mid-section>
+      <h2 class="text-center">Boxes</h2>
       <BoxesPanel/>
     </template>
     <template v-slot:bot-section>

@@ -27,19 +27,18 @@ const deleteCardAction = (cardKey: CardKey): void => {
 </script>
 
 <template>
-  <div>
-    <CardPanel
-      v-for="card in cards"
-      :card="card"
-      :delete-function="() => deleteCardAction(card.key)"
-    />
-  </div>
   <v-pagination
+    v-if="pageCount > 1"
     class="mt-3"
     v-model="pageSelected"
     :length="pageCount"/>
+  <CardPanel
+    v-for="card in cards"
+    :card="card"
+    :delete-function="() => deleteCardAction(card.key)"
+  />
   <v-btn
-    class="w-100"
+    class="mt-3 w-100"
     text="Add Card"
     @click="router.push({ name: 'new-card', params: { boxId: box.id }})"
   />
