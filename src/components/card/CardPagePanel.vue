@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CardPanel from "@/components/CardPanel.vue"
+import CardPanel from "@/components/card/CardPanel.vue";
 import { ref, watch } from "vue"
 import cardDao from "@/core/dao/cardDao";
 import studyService from "@/core/service/studyService";

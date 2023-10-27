@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CardSide from '@/components/CardSide.vue'
+import CardSide from '@/components/card/CardSide.vue'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { ref } from "vue"
 import studyService from "@/core/service/studyService";

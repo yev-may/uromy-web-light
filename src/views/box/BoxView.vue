@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ViewTemplate from "@/views/ViewTemplate.vue";
-import BackButton from "@/components/BackButton.vue";
-import CardPagePanel from "@/components/CardPagePanel.vue";
+import BackButton from "@/components/struct/BackButton.vue";
+import CardPagePanel from "@/components/card/CardPagePanel.vue";
 import { reactive, ref } from "vue";
 import boxDao from "@/core/dao/boxDao";
 import router from "@/router";

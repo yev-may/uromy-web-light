@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MainMenuView from "@/views/MainMenuView.vue";
-import NewCardView from "@/views/NewCardView.vue";
-import StudyCardView from "@/views/StudyCardView.vue";
-import BoxesView from "@/views/BoxesView.vue";
-import EditCardView from "@/views/EditCardView.vue";
-import BoxView from "@/views/BoxView.vue";
-import EditBoxView from "@/views/EditBoxView.vue";
-import NewBoxView from "@/views/NewBoxView.vue";
+import MainMenuView from "@/views/MainMenuView.vue"
+import NewCardView from "@/views/card/NewCardView.vue"
+import StudyCardView from "@/views/card/StudyCardView.vue"
+import BoxesView from "@/views/box/BoxesView.vue"
+import EditCardView from "@/views/card/EditCardView.vue"
+import BoxView from "@/views/box/BoxView.vue"
+import EditBoxView from "@/views/box/EditBoxView.vue"
+import NewBoxView from "@/views/box/NewBoxView.vue"
 
 const routes = [
   {

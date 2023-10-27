@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ViewTemplate from "@/views/ViewTemplate.vue";
-import BackButton from "@/components/BackButton.vue";
-import CardForm from "@/components/CardForm.vue";
+import BackButton from "@/components/struct/BackButton.vue";
+import CardForm from "@/components/card/CardForm.vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import router from "@/router";

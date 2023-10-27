@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CardSide from '@/components/CardSide.vue'
-import Preview from '@/components/Preview.vue'
+import CardSide from '@/components/card/CardSide.vue'
+import Preview from '@/components/struct/Preview.vue'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { ref } from 'vue'
 import router from '@/router'

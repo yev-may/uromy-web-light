@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ViewTemplate from "@/views/ViewTemplate.vue";
-import BackButton from "@/components/BackButton.vue"
-import StudyCard from "@/components/StudyCard.vue"
+import BackButton from "@/components/struct/BackButton.vue"
+import StudyCard from "@/components/card/StudyCard.vue"
 import { reactive, onMounted } from "vue"
 import studyService from "@/core/service/studyService";
 const card = reactive<Card>({ key: {id: '', boxId: '' }, question: '', answer: ''})

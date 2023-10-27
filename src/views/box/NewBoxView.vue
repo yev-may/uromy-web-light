@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ViewTemplate from "@/views/ViewTemplate.vue";
-import BackButton from "@/components/BackButton.vue";
-import BoxForm from "@/components/BoxForm.vue";
+import BackButton from "@/components/struct/BackButton.vue";
+import BoxForm from "@/components/box/BoxForm.vue";
 </script>
 
 <template>

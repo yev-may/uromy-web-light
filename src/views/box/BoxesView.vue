@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ViewTemplate from "@/views/ViewTemplate.vue";
-import StorageStatus from "@/components/StorageStatus.vue";
-import BackButton from "@/components/BackButton.vue";
-import BoxesPanel from "@/components/BoxesPanel.vue";
+import StorageStatus from "@/components/storage/StorageStatus.vue";
+import BackButton from "@/components/struct/BackButton.vue";
+import BoxesPanel from "@/components/box/BoxesPanel.vue";
 </script>
 
 <template>

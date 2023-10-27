@@ -1,9 +1,8 @@
 <script setup lang="ts">
+import BoxPanel from "@/components/box/BoxPanel.vue";
 import { ref } from "vue";
 import boxDao from "@/core/dao/boxDao";
-import BoxPanel from "@/components/BoxPanel.vue";
 import router from "@/router";
-import BoxForm from "@/components/BoxForm.vue";
 
 const boxes = ref<Array<Box>>(boxDao.getBoxes())
 
