@@ -7,6 +7,7 @@ import BoxForm from "@/components/box/BoxForm.vue";
 <template>
   <ViewTemplate>
     <template v-slot:mid-section>
+      <h2 class="text-center mb-3">New box</h2>
       <BoxForm
         :box-form-template="{ title: '' }"
         button-text="Create"

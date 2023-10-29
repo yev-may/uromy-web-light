@@ -30,6 +30,7 @@ const createCardToStudy = (card: NewCardForm) => {
 <template>
   <ViewTemplate>
     <template v-slot:mid-section>
+      <h2 class="text-center mb-3">New card</h2>
       <CardForm
         :key="formRefreshKey"
         :card-form-template="createCardFormTemplate()"

@@ -24,6 +24,7 @@ function updateCard(card: Card) {
 <template>
   <ViewTemplate>
     <template v-slot:mid-section>
+      <h2 class="text-center mb-3">Edit card</h2>
       <CardForm
         :key="formRefreshKey"
         :card-form-template="card"

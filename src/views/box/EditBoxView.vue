@@ -12,6 +12,7 @@ const box: Box = boxDao.getBox(route.params.boxId as string)
 <template>
   <ViewTemplate>
     <template v-slot:mid-section>
+      <h2 class="text-center mb-3">Edit box</h2>
       <BoxForm
         :box-id="box.id"
         :box-form-template="box"
