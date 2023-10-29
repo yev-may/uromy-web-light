@@ -1,5 +1,5 @@
-import { AbstractDao } from "@/core/dao/AbstractDao";
-import localStorageService from "@/core/dao/storage/localStorageService";
+import { AbstractDao } from '@/core/dao/AbstractDao'
+import localStorageService from '@/core/dao/storage/localStorageService'
 
 class BoxDao extends AbstractDao<Box> {
   BOX_ID_PREFIX = 'b_'
@@ -16,7 +16,7 @@ class BoxDao extends AbstractDao<Box> {
   }
 
   generateUid() {
-    return this.BOX_ID_PREFIX + this.getSeqId(this.BOX_SEQUENCE_KEY);
+    return this.BOX_ID_PREFIX + this.getSeqId(this.BOX_SEQUENCE_KEY)
   }
 
   createBox(newBoxForm: NewBoxForm): void {

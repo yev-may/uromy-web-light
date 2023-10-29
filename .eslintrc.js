@@ -24,6 +24,7 @@ module.exports = {
   'parserOptions': {
     'ecmaVersion': 'latest',
     'parser': '@typescript-eslint/parser',
+    'warnOnUnsupportedTypeScriptVersion': false,
     'sourceType': 'module'
   },
   'plugins': [
@@ -46,6 +47,7 @@ module.exports = {
     'semi': [
       'error',
       'never'
-    ]
+    ],
+    '@typescript-eslint/no-unused-vars': 'off',
   }
 }

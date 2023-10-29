@@ -1,5 +1,5 @@
 import { AbstractDao } from '@/core/dao/AbstractDao'
-import localStorageService from "@/core/dao/storage/localStorageService"
+import localStorageService from '@/core/dao/storage/localStorageService'
 
 class CardDao extends AbstractDao<Card> {
   CARD_ID_PREFIX = 'c_'
@@ -71,7 +71,7 @@ class CardDao extends AbstractDao<Card> {
   }
 
   generateUid(): string {
-    return this.CARD_ID_PREFIX + this.getSeqId(this.CARD_SEQUENCE_KEY);
+    return this.CARD_ID_PREFIX + this.getSeqId(this.CARD_SEQUENCE_KEY)
   }
 }
 

@@ -1,5 +1,5 @@
-import { AbstractDao } from "@/core/dao/AbstractDao";
-import localStorageService from "@/core/dao/storage/localStorageService";
+import { AbstractDao } from '@/core/dao/AbstractDao'
+import localStorageService from '@/core/dao/storage/localStorageService'
 
 const STUDY_CARDS_KEY = 'study_cards'
 

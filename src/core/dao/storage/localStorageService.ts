@@ -9,7 +9,7 @@ class LocalStorageService {
     localStorage.setItem(key, valueToStore)
   }
 
-  deleteEntity<T>(key: string): void {
+  deleteEntity(key: string): void {
     localStorage.removeItem(key)
   }
 }

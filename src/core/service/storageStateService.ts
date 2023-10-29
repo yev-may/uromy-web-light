@@ -6,7 +6,7 @@ export function getStorageSizeKB(): number {
 function getStorageSize(): number {
   let total = 0, keyLength: number, key: string
   for (key in localStorage) {
-    if (!localStorage.hasOwnProperty(key)) { continue }
+    if (!(key in localStorage)) { continue }
     keyLength = localStorage[key].length + key.length
     total += keyLength
   }
