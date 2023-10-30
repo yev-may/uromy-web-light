@@ -4,6 +4,7 @@ import Preview from '@/components/struct/Preview.vue'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { ref } from 'vue'
 import router from '@/router'
+import ViewContainer from "@/views/ViewContainer.vue";
 
 defineProps<{
   card: Card,
@@ -33,22 +34,21 @@ const isDialogDisplayed = ref(false)
       />
     </div>
   </Preview>
-  <v-dialog
-    v-model="isDialogDisplayed"
-    width="auto"
-  >
-    <v-card>
-      <v-card-text>
-        Are you sure you want to delete this card?
-        <CardSide
-          :content="card.question"
-        />
-      </v-card-text>
-      <v-card-actions class="d-flex justify-center">
-        <v-btn @click="isDialogDisplayed = false">No</v-btn>
-        <v-btn @click="deleteFunction">Yes</v-btn>
-      </v-card-actions>
-    </v-card>
+  <v-dialog v-model="isDialogDisplayed">
+    <ViewContainer>
+      <v-card>
+        <v-card-text>
+          Are you sure you want to delete this card?
+          <CardSide
+            :content="card.question"
+          />
+        </v-card-text>
+        <v-card-actions class="d-flex justify-center">
+          <v-btn @click="isDialogDisplayed = false">No</v-btn>
+          <v-btn @click="deleteFunction">Yes</v-btn>
+        </v-card-actions>
+      </v-card>
+    </ViewContainer>
   </v-dialog>
 </template>
 

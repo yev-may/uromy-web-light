@@ -5,6 +5,7 @@ import CardForm from "@/components/card/CardForm.vue"
 import { ref } from "vue"
 import studyService from "@/core/service/studyService";
 import { useRoute } from "vue-router";
+import ViewContainer from "@/views/ViewContainer.vue";
 
 const route = useRoute()
 
@@ -43,14 +44,16 @@ const createCardToStudy = (card: NewCardForm) => {
     </template>
   </ViewTemplate>
 
-  <v-dialog v-model="dialog" width="auto">
-    <v-card>
-      <v-card-text>
-        Card created
-      </v-card-text>
-      <v-card-actions>
-        <v-btn block variant="outlined" @click="dialog = false">OK</v-btn>
-      </v-card-actions>
-    </v-card>
+  <v-dialog v-model="dialog">
+    <ViewContainer>
+      <v-card>
+        <v-card-text>
+          Card created
+        </v-card-text>
+        <v-card-actions>
+          <v-btn block variant="outlined" @click="dialog = false">OK</v-btn>
+        </v-card-actions>
+      </v-card>
+    </ViewContainer>
   </v-dialog>
 </template>
