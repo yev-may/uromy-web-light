@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import ViewTemplate from "@/views/ViewTemplate.vue";
 import BackButton from "@/components/struct/BackButton.vue";
+import ViewContainer from "@/views/ViewContainer.vue";
+import DialogWindow from "@/components/struct/DialogWindow.vue";
 import CardPagePanel from "@/components/card/CardPagePanel.vue";
 import { reactive, ref } from "vue";
 import boxDao from "@/core/dao/boxDao";
 import router from "@/router";
 import { useRoute } from "vue-router";
-import Preview from "@/components/struct/Preview.vue";
-import ViewContainer from "@/views/ViewContainer.vue";
 
 const route = useRoute()
 
@@ -46,22 +46,22 @@ function deleteBox() {
 
   <v-dialog v-model="isDialogDisplayed">
     <ViewContainer>
-      <v-card>
-        <v-card-text>
+      <DialogWindow>
+        <template v-slot:text>
           Are you sure you want to delete this box?
           <v-card>
             <v-card-text class="ql-editor">
               <div class="w-100"
-                v-html="box.title"
+                   v-html="box.title"
               />
             </v-card-text>
           </v-card>
-        </v-card-text>
-        <v-card-actions class="d-flex justify-center">
+        </template>
+        <template v-slot:actions>
           <v-btn @click="isDialogDisplayed = false">No</v-btn>
           <v-btn @click="deleteBox">Yes</v-btn>
-        </v-card-actions>
-      </v-card>
+        </template>
+      </DialogWindow>
     </ViewContainer>
   </v-dialog>
 </template>

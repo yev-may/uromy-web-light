@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import ViewContainer from '@/views/ViewContainer.vue'
+import DialogWindow from '@/components/struct/DialogWindow.vue'
 import CardSide from '@/components/card/CardSide.vue'
 import Preview from '@/components/struct/Preview.vue'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { ref } from 'vue'
 import router from '@/router'
-import ViewContainer from "@/views/ViewContainer.vue";
 
 defineProps<{
   card: Card,
@@ -36,18 +37,18 @@ const isDialogDisplayed = ref(false)
   </Preview>
   <v-dialog v-model="isDialogDisplayed">
     <ViewContainer>
-      <v-card>
-        <v-card-text>
+      <DialogWindow>
+        <template v-slot:text>
           Are you sure you want to delete this card?
           <CardSide
             :content="card.question"
           />
-        </v-card-text>
-        <v-card-actions class="d-flex justify-center">
+        </template>
+        <template v-slot:actions>
           <v-btn @click="isDialogDisplayed = false">No</v-btn>
           <v-btn @click="deleteFunction">Yes</v-btn>
-        </v-card-actions>
-      </v-card>
+        </template>
+      </DialogWindow>
     </ViewContainer>
   </v-dialog>
 </template>
