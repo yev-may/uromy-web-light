@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ViewContainer from '@/views/ViewContainer.vue'
 </script>
 

@@ -20,6 +20,6 @@ export class AbstractDao<T> {
   }
 
   deleteEntity(key: string): void {
-    localStorageService.deleteEntity<T>(key)
+    localStorageService.deleteEntity(key)
   }
 }
